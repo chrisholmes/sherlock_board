@@ -1,0 +1,17 @@
+.grid {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(4, 175px);
+}
+
+.box { 
+  background-color: #444; 
+  color: #fff; 
+  border-radius: 0px; 
+  width: 175px;
+  font-size: 150%; 
+  height: 175px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

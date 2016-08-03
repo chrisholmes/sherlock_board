@@ -1,6 +1,7 @@
 defmodule SherlockBoard do
   use Application
 
+
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
   def start(_type, _args) do
@@ -10,7 +11,7 @@ defmodule SherlockBoard do
       # Start the endpoint when the application starts
       supervisor(SherlockBoard.Endpoint, []),
       # Here you could define other workers and supervisors as children
-      # worker(SherlockBoard.Worker, [arg1, arg2, arg3]),
+      worker(SherlockBoard.Periodically, [SherlockBoard.MyJob]),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

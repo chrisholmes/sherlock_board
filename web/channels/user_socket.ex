@@ -2,7 +2,7 @@ defmodule SherlockBoard.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "rooms:*", SherlockBoard.RoomChannel
+  channel "cells:*", SherlockBoard.RoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
