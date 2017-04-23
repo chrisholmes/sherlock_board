@@ -4,7 +4,7 @@ defmodule SherlockBoard.Job do
     Endpoint.broadcast("jobs:#{name}", "event", data)
   end
 
-  def period do
-    2
+  def send_html(name, html) do
+    Endpoint.broadcast("jobs:#{name}", "html", %{"html" => html})
   end
 end

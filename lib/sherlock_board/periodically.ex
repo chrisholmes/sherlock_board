@@ -17,6 +17,6 @@ defmodule SherlockBoard.Periodically do
   end
 
   defp schedule_work(job) do
-    Process.send_after(self(), :work, job.period ) # In 2 hours
+    Process.send_after(self(), :work, job.period * 1000)
   end
 end

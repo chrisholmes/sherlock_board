@@ -2,10 +2,8 @@ defmodule SherlockBoard.MyJob do
   import SherlockBoard.Job
 
   def run do
-    IO.puts "hello"
+    send_event("my_job", %{"content" => "Hello World"})
   end
 
-  def period do
-    2 * 1000
-  end
+  def period, do: 2
 end
