@@ -3,12 +3,15 @@ defmodule SherlockBoard.DashboardTest do
 
   test "there is a set of six boxes" do
     navigate_to("/foo")
-    assert length(find_all_elements(:css, "div.box")) == 6
+    assert length(find_all_elements(:css, "div.box")) == 2
   end
 
-  test "there is a box with data set by backend" do
+  test "there are boxes with data set by backend jobs" do
     navigate_to("/foo")
-    assert visible_in_element?({:css, "div.box#one"}, ~r/foobar/)
+    wait_until fn ->
+      assert visible_in_element?({:css, "div.box"}, ~r/bar/)
+      assert visible_in_element?({:css, "div.box div"}, ~r/Hello World/)
+    end
   end
 end
 
