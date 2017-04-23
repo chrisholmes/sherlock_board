@@ -1,8 +1,4 @@
-<div class="grid">
-  <div class="box" job="my_job">Hi</div>
-  <div class="box">Hi</div>
-  <div class="box">Hi</div>
-  <div class="box">Hi</div>
-  <div class="box">Hi</div>
-  <div class="box">Hi</div>
+<div id="grid" class="grid">
+  <box widget="Number"></box>
+  <htmlbox></htmlBox>
 </div>

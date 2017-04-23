@@ -18,5 +18,48 @@ import "phoenix_html"
 // Local files can be imported directly using relative
 // paths "./socket" or full ones "web/static/js/socket".
 
-import $ from "jquery"
+import Vue from "vue";
 import socket from "./socket"
+
+let channel = socket.channel("jobs:my_job", {});
+channel.join()
+  .receive("ok", resp => { console.log("Joined successfully", resp) })
+  .receive("error", resp => { console.log("Unable to join", resp) })
+
+Vue.component('htmlbox', {
+  template: '<div class="box"><div v-html="htmlPayload"></div></div>',
+  mounted: function() {
+    channel.on("html", payload => {
+      this.htmlPayload = payload.html;
+    })
+  },
+  data() {
+    return {
+      htmlPayload: null
+    }
+  }
+})
+
+Vue.component('Number', {
+  template: '<p>{{ payload.value }}</p>',
+  props: ["payload"]
+})
+
+Vue.component('box', {
+  template: '<div class="box"><component v-bind:is="widget" v-bind:payload="payload"></component></div>',
+  props: ["widget"],
+  mounted: function() {
+    channel.on("event", payload => {
+      this.payload = payload;
+    })
+  },
+  data() {
+    return {
+      payload: {}
+    }
+  }
+})
+
+var app = new Vue({
+  el: "#grid"
+})

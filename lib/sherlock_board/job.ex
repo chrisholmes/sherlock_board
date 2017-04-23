@@ -5,6 +5,6 @@ defmodule SherlockBoard.Job do
   end
 
   def send_html(name, html) do
-    Endpoint.broadcast("jobs:#{name}", "html", %{"html" => html})
+    Endpoint.broadcast("jobs:#{name}", "html", %{html: html})
   end
 end

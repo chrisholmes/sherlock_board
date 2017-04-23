@@ -54,22 +54,4 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 socket.connect()
 
 // Now that you are connected, you can join channels with a topic:
-import $ from "jquery";
-let boxes = $('.box')
-console.log(boxes)
-boxes.each(function(idx) {
-  let box = $(this);
-  let job = box.attr('job');
-  if(job != null) {
-    let channel = socket.channel("jobs:my_job", {});
-
-    channel.on("html", payload => {
-      box.html(payload.html);
-    }) 
-
-    channel.join()
-      .receive("ok", resp => { console.log("Joined successfully", resp) })
-      .receive("error", resp => { console.log("Unable to join", resp) })
-  }
-})
 export default socket
