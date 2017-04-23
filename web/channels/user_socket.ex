@@ -2,7 +2,7 @@ defmodule SherlockBoard.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  channel "jobs:*", SherlockBoard.JobChannel
+  channel "jobs", SherlockBoard.JobChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

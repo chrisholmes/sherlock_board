@@ -1,7 +1,7 @@
 defmodule SherlockBoard.JobChannel do
   use SherlockBoard.Web, :channel
 
-  def join("jobs:" <> _job_name, payload, socket) do
+  def join("jobs", payload, socket) do
     if authorized?(payload) do
       {:ok, socket}
     else

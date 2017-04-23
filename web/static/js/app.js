@@ -21,7 +21,7 @@ import "phoenix_html"
 import Vue from "vue";
 import socket from "./socket"
 
-let channel = socket.channel("jobs:my_job", {});
+let channel = socket.channel("jobs", {});
 channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
@@ -29,10 +29,11 @@ channel.join()
 Vue.component('htmlbox', {
   template: '<div class="box"><div v-html="htmlPayload"></div></div>',
   mounted: function() {
-    channel.on("html", payload => {
+    channel.on(this.job, payload => {
       this.htmlPayload = payload.html;
     })
   },
+  props: ["job"],
   data() {
     return {
       htmlPayload: null
@@ -47,9 +48,9 @@ Vue.component('Number', {
 
 Vue.component('box', {
   template: '<div class="box"><component v-bind:is="widget" v-bind:payload="payload"></component></div>',
-  props: ["widget"],
+  props: ["job", "widget"],
   mounted: function() {
-    channel.on("event", payload => {
+    channel.on(this.job, payload => {
       this.payload = payload;
     })
   },

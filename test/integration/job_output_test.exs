@@ -14,14 +14,14 @@ defmodule SherlockBoard.JobOutputTest do
   setup do
     {:ok, _, socket} =
       socket("user_id", %{some: :assign})
-      |> subscribe_and_join(JobChannel, "jobs:test_job")
+      |> subscribe_and_join(JobChannel, "jobs")
 
     {:ok, socket: socket}
   end
 
   test "when a job sends an event it is broadcast to a channel" do
     TestJob.run
-    assert_push "event", %{"foo" => "bar"}
+    assert_push "test_job", %{"foo" => "bar"}
   end
 end
 

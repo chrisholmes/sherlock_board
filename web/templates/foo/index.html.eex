@@ -1,4 +1,4 @@
 <div id="grid" class="grid">
-  <box widget="Number"></box>
-  <htmlbox></htmlBox>
+  <box job="event" widget="Number"></box>
+  <htmlbox job="html" ></htmlBox>
 </div>
