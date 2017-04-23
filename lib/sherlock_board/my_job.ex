@@ -2,7 +2,7 @@ defmodule SherlockBoard.MyJob do
   import SherlockBoard.Job
 
   def run do
-    send_event("my_job", %{"content" => "Hello World"})
+    send_html("my_job", "<p>Hello World</p>")
   end
 
   def period, do: 2
