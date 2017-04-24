@@ -1,5 +1,6 @@
 defmodule SherlockBoard do
   use Application
+  require Logger
 
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
@@ -7,12 +8,16 @@ defmodule SherlockBoard do
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
-    children = [
-      # Start the endpoint when the application starts
-      supervisor(SherlockBoard.Endpoint, []),
-      # Here you could define other workers and supervisors as children
-      worker(SherlockBoard.Periodically, [SherlockBoard.MyJob]),
-    ]
+    jobs_directory = Application.get_env(:jobs, :directory)
+    jobs = SherlockBoard.JobLoader.load(jobs_directory)
+    job_workers = Enum.map(jobs, fn(job) ->
+      worker(SherlockBoard.Periodically, [job], [id: make_ref]) 
+    end)
+  
+    # Start the endpoint when the application starts
+    endpoint_supervisor = supervisor(SherlockBoard.Endpoint, [])
+   
+    children = [endpoint_supervisor|job_workers]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options

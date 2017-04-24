@@ -32,6 +32,7 @@ defmodule SherlockBoard.Mixfile do
      {:phoenix_html, "~> 2.4"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:hound, "~> 1.0", only: :test},
+     {:temp, "~> 0.4"},
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"}]
   end
