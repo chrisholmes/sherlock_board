@@ -8,17 +8,12 @@ defmodule SherlockBoard do
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
-    sherlock_directory = Application.get_env(:sherlock, :directory)
-    jobs_directory = Path.join(sherlock_directory, "jobs")
-    jobs = SherlockBoard.JobLoader.load(jobs_directory)
-    job_workers = Enum.map(jobs, fn(job) ->
-      worker(SherlockBoard.Periodically, [job], [id: make_ref]) 
-    end)
-  
     # Start the endpoint when the application starts
     endpoint_supervisor = supervisor(SherlockBoard.Endpoint, [])
+
+    job_supervisor = supervisor(SherlockBoard.JobSupervisor, [])
    
-    children = [endpoint_supervisor|job_workers]
+    children = [endpoint_supervisor, job_supervisor]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
