@@ -27,22 +27,17 @@ channel.join()
   .receive("error", resp => { console.log("Unable to join", resp) })
 
 Vue.component('htmlbox', {
-  template: '<div class="box"><div v-html="htmlPayload"></div></div>',
-  mounted: function() {
-    channel.on(this.job, payload => {
-      this.htmlPayload = payload.html;
-    })
-  },
-  props: ["job"],
-  data() {
-    return {
-      htmlPayload: null
-    }
-  }
+  template: '<box widget="Html" job="html"></box>',
+  props: ["job", "widget"]
+})
+
+Vue.component('Html', {
+  template: '<div class="html" v-html="payload.html"></div>',
+  props: ["payload"]
 })
 
 Vue.component('Number', {
-  template: '<p>{{ payload.value }}</p>',
+  template: '<div class="number-widget"><p>{{ payload.value }}</p></div>',
   props: ["payload"]
 })
 
@@ -57,6 +52,33 @@ Vue.component('box', {
   data() {
     return {
       payload: {}
+    }
+  }
+})
+
+Vue.component('grid', {
+  template: '<div class="grid" v-bind:style="gridStyle"><slot></slot></div>',
+  props: ["columns", "width", "height", "rows"],
+  computed:  {
+    gridTemplateColumns: function() {
+      return "repeat(" + (this.columns || this.defaultColumns) + ", " + (this.width || this.defaultWidth) + ")"
+    },
+    gridTemplateRows: function() {
+      return "repeat(" + (this.rows || this.defaultRows) + ", " + (this.height || this.defaultHeight) + ")";
+    },
+    gridStyle: function() {
+      return {
+        gridTemplateColumns: this.gridTemplateColumns,
+        gridTemplateRows: this.gridTemplateRows
+      }
+    }
+  },
+  data: function() {
+    return {
+      defaultHeight: "200px",
+      defaultWidth: "200px",
+      defaultRows: 4,
+      defaultColumns: 5
     }
   }
 })
