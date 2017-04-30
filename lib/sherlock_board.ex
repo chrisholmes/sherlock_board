@@ -8,7 +8,8 @@ defmodule SherlockBoard do
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
-    jobs_directory = Application.get_env(:jobs, :directory)
+    sherlock_directory = Application.get_env(:sherlock, :directory)
+    jobs_directory = Path.join(sherlock_directory, "jobs")
     jobs = SherlockBoard.JobLoader.load(jobs_directory)
     job_workers = Enum.map(jobs, fn(job) ->
       worker(SherlockBoard.Periodically, [job], [id: make_ref]) 

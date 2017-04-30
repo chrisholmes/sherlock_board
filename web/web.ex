@@ -32,8 +32,17 @@ defmodule SherlockBoard.Web do
   end
 
   def view do
+    view(%{root: "web/templates"})
+  end
+
+  def dashboard_view do
+    sherlock_directory = Application.get_env(:sherlock, :directory)
+    view(%{root: sherlock_directory})
+  end
+
+  defp view(%{root: root}) do
     quote do
-      use Phoenix.View, root: "web/templates"
+      use Phoenix.View, root: unquote(root)
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]

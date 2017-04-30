@@ -10,4 +10,4 @@ config :sherlock_board, SherlockBoard.Endpoint,
 config :logger, level: :warn
 config :hound, driver: "chrome_driver"
 
-config :jobs, directory: "test/job_fixtures"
+config :sherlock, directory: "test/fixtures"
