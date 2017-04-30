@@ -1,9 +1,5 @@
-defmodule SherlockBoard.EventJob do
-  import SherlockBoard.Job
+import SherlockBoard.Job
 
-  def run do
-    send_event("event", %{value: "bar"})
-  end
-
-  def period, do: 2
+job :event_job, 2 do
+  send_event("event", %{value: "bar"})
 end
