@@ -2,9 +2,12 @@
   "repository": {},
   "dependencies": {
     "babel-brunch": "~6.0.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "brunch": "~2.10.9",
     "phoenix": "file:deps/phoenix",
     "phoenix_html": "file:deps/phoenix_html",
-    "vue": "^2.2.6"
-  }
+    "vue": "2.3.0",
+    "vue-brunch": "https://github.com/chrisholmes/vue-brunch.git"
+  },
+  "devDependencies": {}
 }

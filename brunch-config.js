@@ -1,3 +1,18 @@
+var fs = require('fs');
+function widgetsDirectory() {
+  var sherlockDir = process.env['SHERLOCK_DIR'];
+  if(sherlockDir == undefined) {
+    return 'widgets/'
+  } else {
+    return sherlockDir + '/widgets/';
+  }
+}
+
+var widgetsDir = widgetsDirectory();
+var widgets = fs.readdirSync(widgetsDir).filter(function(file) {
+  return file.match(/.*vue$/)
+}).map(function(file) { return widgetsDir + file});
+
 exports.config = {
   // See http://brunch.io/#documentation for docs.
   files: {
@@ -39,6 +54,7 @@ exports.config = {
   paths: {
     // Dependencies and current project directories to watch
     watched: [
+      widgetsDir,
       "web/static",
       "test/static"
     ],
@@ -52,12 +68,18 @@ exports.config = {
     babel: {
       // Do not use ES6 compiler in vendor code
       ignore: [/web\/static\/vendor/]
-    }
+    },
+    vue: {
+      globalizeComponents: true,
+      extractCSS: true,
+      out: 'priv/static/css/components.css'
+    },
+    vueWidget: {}
   },
 
   modules: {
     autoRequire: {
-      "js/app.js": ["web/static/js/app"]
+      "js/app.js": widgets.concat(["web/static/js/app"])
     }
   },
 
@@ -67,7 +89,7 @@ exports.config = {
     // All other deps in package.json will be excluded from the bundle.
     whitelist: ["phoenix", "phoenix_html", "vue"],
     aliases: {
-      vue: 'vue/dist/vue.js'
+      vue: 'vue/dist/vue.common.js'
     }
   }
 };

@@ -16,14 +16,3 @@
   align-items: center;
   justify-content: center;
 }
-
-.number-widget {
-  background-color: red;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  font-size: 200%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
