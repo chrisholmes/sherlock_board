@@ -3,13 +3,6 @@ defmodule SherlockBoard.JobOutputTest do
 
   alias SherlockBoard.JobChannel
 
-  defmodule TestJob do
-    import SherlockBoard.Job
-
-    def run do
-      send_event("test_job", %{"foo" => "bar"} )
-    end
-  end
 
   setup do
     {:ok, _, socket} =
@@ -19,9 +12,13 @@ defmodule SherlockBoard.JobOutputTest do
     {:ok, socket: socket}
   end
 
-  test "when a job sends an event it is broadcast to a channel" do
-    TestJob.run
-    assert_push "test_job", %{"foo" => "bar"}
+  test "when a job sends an event it is broadcast to a channel with its period" do
+    require SherlockBoard.Job
+    SherlockBoard.Job.job :TestJob, 2 do
+      send_event("test_job", %{"foo" => "bar"} )
+    end
+    SherlockBoard.Job.TestJob.run
+    assert_push "test_job", %{"foo" => "bar", period: 2}
   end
 end
 
