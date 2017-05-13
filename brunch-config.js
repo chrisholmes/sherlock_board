@@ -74,12 +74,11 @@ exports.config = {
       extractCSS: true,
       out: 'priv/static/css/components.css'
     },
-    vueWidget: {}
   },
 
   modules: {
     autoRequire: {
-      "js/app.js": widgets.concat(["web/static/js/app"])
+      "js/app.js": ["widgets/deps"].concat(widgets.concat(["web/static/js/app"]))
     }
   },
 
@@ -87,7 +86,6 @@ exports.config = {
     enabled: true,
     // Whitelist the npm deps to be pulled in as front-end assets.
     // All other deps in package.json will be excluded from the bundle.
-    whitelist: ["phoenix", "phoenix_html", "vue"],
     aliases: {
       vue: 'vue/dist/vue.common.js'
     }

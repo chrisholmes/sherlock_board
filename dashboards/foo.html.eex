@@ -1,6 +1,8 @@
 <div id="dashboard">
   <grid id="grid" class="grid" rows="4" columns="4" width="300px" height="300px">
     <number job="event"></number>
+    <chart job="chart"></chart>
+    <shifting-chart job="now"></shifting-chart>
     <htmlbox job="html"></htmlbox>
   </grid>
 </div>
