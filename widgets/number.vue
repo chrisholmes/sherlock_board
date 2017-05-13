@@ -1,24 +1,20 @@
 <template>
-<div class="number-widget">
-  <p>{{ payload.value }}</p>
-</div>
+  <span>{{ payload.value }}</span>
 </template>
 
 <script>
-var widget = {
-  props: ["payload"]
-};
+import Widget from 'web/static/js/widget';
 
-export default widget;
+export default Widget.register('number', {});
 </script>
 
 <style scoped>
-.number-widget {
-  background-color: red;
+span {
+  background-color: #C33A3D;
+  text-color: rgb(230,230,230);
+  font-size: 400%;
   height: 100%;
   width: 100%;
-  display: flex;
-  font-size: 200%;
   display: flex;
   align-items: center;
   justify-content: center;

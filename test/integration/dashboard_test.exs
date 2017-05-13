@@ -14,10 +14,10 @@ defmodule SherlockBoard.DashboardTest do
   test "there are boxes with data set by backend jobs" do
     navigate_to("/foo")
     wait_until fn ->
-      assert visible_in_element?({:css, "div.box div.html"}, ~r/Hello World/)
+      assert visible_in_element?({:css, "div.box div.html-widget"}, ~r/Hello World/)
     end
     wait_until fn ->
-      assert visible_in_element?({:css, "div.box div.number-widget"}, ~r/bar/)
+      assert visible_in_element?({:css, "div.box span"}, ~r/bar/)
     end
   end
 end

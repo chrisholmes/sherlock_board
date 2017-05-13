@@ -1,6 +1,6 @@
 <div id="dashboard">
-  <grid id="grid" class="grid" rows="4" columns="4" width="200px" height="200px">
-    <box job="event" widget="number"></box>
-    <htmlbox job="html" ></htmlBox>
+  <grid id="grid" class="grid" rows="4" columns="4" width="300px" height="300px">
+    <number job="event"></number>
+    <htmlbox job="html"></htmlbox>
   </grid>
 </div>
