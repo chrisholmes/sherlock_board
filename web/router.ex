@@ -15,8 +15,6 @@ defmodule SherlockBoard.Router do
 
   scope "/", SherlockBoard do
     pipe_through :browser # Use the default browser stack
-
-    get "/", PageController, :index
     get "/:dashboard", DashboardsController, :index
   end
 
