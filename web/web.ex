@@ -51,7 +51,6 @@ defmodule SherlockBoard.Web do
       use Phoenix.HTML
 
       import SherlockBoard.Router.Helpers
-      import SherlockBoard.ErrorHelpers
       import SherlockBoard.Gettext
     end
   end

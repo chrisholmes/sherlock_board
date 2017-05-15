@@ -3,7 +3,7 @@ defmodule SherlockBoard.DashboardTest do
 
   test "there is a set of six boxes" do
     navigate_to("/foo")
-    assert length(find_all_elements(:css, "div.box")) == 2
+    assert length(find_all_elements(:css, "div.box")) == 4
   end
 
   test "dashboard not found when no dashboard defined" do

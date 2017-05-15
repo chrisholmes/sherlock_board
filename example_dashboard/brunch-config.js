@@ -1,3 +1,18 @@
+var fs = require('fs');
+function widgetsDirectory() {
+  var sherlockDir = process.env['SHERLOCK_DIR'];
+  if(sherlockDir == undefined) {
+    return 'widgets/'
+  } else {
+    return sherlockDir + '/widgets/';
+  }
+}
+
+var widgetsDir = widgetsDirectory();
+var widgets = fs.readdirSync(widgetsDir).filter(function(file) {
+  return file.match(/.*vue$/)
+}).map(function(file) { return widgetsDir + file});
+
 exports.config = {
   // See http://brunch.io/#documentation for docs.
   files: {
@@ -23,8 +38,8 @@ exports.config = {
   paths: {
     // Dependencies and current project directories to watch
     watched: [
-      "web/static",
-      "test/static"
+      widgetsDir,
+      "../web/static",
     ],
 
     // Where to compile files to
@@ -46,7 +61,7 @@ exports.config = {
 
   modules: {
     autoRequire: {
-      "js/app.js": ["web/static/js/app"]
+      "js/app.js": ["widgets/deps"].concat(widgets).concat(["web/static/js/app"])
     }
   },
 
@@ -55,7 +70,9 @@ exports.config = {
     // Whitelist the npm deps to be pulled in as front-end assets.
     // All other deps in package.json will be excluded from the bundle.
     aliases: {
-      vue: 'vue/dist/vue.common.js'
+      vue: 'vue/dist/vue.common.js',
+      phoenix: 'phoenix/priv/static/phoenix.js',
+      phoenix_html: 'phoenix_html/priv/static/phoenix_html.js'
     }
   }
 };

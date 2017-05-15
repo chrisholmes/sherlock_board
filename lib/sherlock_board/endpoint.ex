@@ -3,12 +3,22 @@ defmodule SherlockBoard.Endpoint do
 
   socket "/socket", SherlockBoard.UserSocket
 
-  # Serve at "/" the static files from "priv/static" directory.
+  # # Serve at "/" the static files from "priv/static" directory.
+  # #
+  # # You should set gzip to true if you are running phoenix.digest
+  # # when deploying your static files in production.
+  # plug Plug.Static,
+  #   at: "/", from: :sherlock_board, gzip: false,
+  #   only: ~w(css fonts images js favicon.ico robots.txt)
+  
+  # Serve at "/widgets" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
-  plug Plug.Static,
-    at: "/", from: :sherlock_board, gzip: false,
+  plug Plug.Static, 
+    at: "/",
+    from: Path.join(Application.get_env(:sherlock, :directory), "priv/static"),
+    gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
