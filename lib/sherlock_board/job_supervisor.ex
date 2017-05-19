@@ -11,7 +11,7 @@ defmodule SherlockBoard.JobSupervisor do
 
   defp directory do
     sherlock_directory = Application.get_env(:sherlock, :directory)
-    jobs_directory = Path.join(sherlock_directory, "jobs")
+    Path.join(sherlock_directory, "jobs")
   end
 
   defp create_worker(job) do
