@@ -9,6 +9,7 @@ defmodule SherlockBoard.Mixfile do
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     package: package(),
      deps: deps]
   end
 
@@ -34,5 +35,13 @@ defmodule SherlockBoard.Mixfile do
      {:temp, "~> 0.4", only: :test},
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"}]
+  end
+
+  defp package do
+    [
+      name: :sherlock_board,
+      files: ~w{lib web mix.exs README},
+      licenses: ["MIT"]
+    ]
   end
 end
