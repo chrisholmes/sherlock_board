@@ -4,6 +4,7 @@ defmodule Mix.Tasks.Sherlock.New.Test do
     Mix.shell(Mix.Shell.Process)
     Temp.track!
     cd = Temp.mkdir! "my-dir"
+    IO.puts "creating directory at #{cd}"
     prev_cd = File.cwd!
     send self(), {:mix_shell_input, :yes?, true}
     File.cd!(cd, fn -> run_test end)

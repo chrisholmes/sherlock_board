@@ -1,15 +1,20 @@
 {
+  "name": "sherlock",
   "version": "0.0.1",
   "repository": {},
+  "main": "priv/static/js/sherlock.js",
+  "license": "MIT",
   "dependencies": {
     "babel-brunch": "~6.0.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "brunch": "~2.10.9",
-    "chart.js": "^2.5.0",
     "phoenix": "file:deps/phoenix",
-    "phoenix_html": "file:deps/phoenix_html",
-    "vue": "2.3.0",
-    "vue-brunch": "2.0.1"
+    "phoenix_html": "file:deps/phoenix_html"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "files": [
+    "package.json",
+    "priv/static/js/sherlock.js",
+    "priv/static/css/sherlock.css"
+  ]
 }

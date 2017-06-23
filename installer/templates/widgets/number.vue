@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Widget from 'web/static/js/widget';
+import { Widget } from 'sherlock';
 
 export default Widget.register('number', {});
 </script>

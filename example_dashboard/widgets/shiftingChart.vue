@@ -20,7 +20,7 @@ var options = {
   }
 }
 var Chart = require("chart.js")
-import Widget from 'web/static/js/widget'
+import { Widget } from 'sherlock'
 export default Widget.register('shiftingChart', {
   data() {
     return {

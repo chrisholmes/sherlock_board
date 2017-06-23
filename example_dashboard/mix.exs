@@ -35,9 +35,9 @@ defmodule ExampleDashboard.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:sherlock_board, path: '../'},
-      {:phoenix, "~> 1.1.4"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
+      {:phoenix, "~> 1.1.4"},
+      {:sherlock_board, path: '../'},
       {:hound, "~> 1.0", only: :test}
     ]
   end

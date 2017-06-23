@@ -1,14 +1,5 @@
 var fs = require('fs');
-function widgetsDirectory() {
-  var sherlockDir = process.env['SHERLOCK_DIR'];
-  if(sherlockDir == undefined) {
-    return 'widgets/'
-  } else {
-    return sherlockDir + '/widgets/';
-  }
-}
-
-var widgetsDir = widgetsDirectory();
+var widgetsDir = "widgets/"
 var widgets = fs.readdirSync(widgetsDir).filter(function(file) {
   return file.match(/.*vue$/)
 }).map(function(file) { return widgetsDir + file});
@@ -38,8 +29,7 @@ exports.config = {
   paths: {
     // Dependencies and current project directories to watch
     watched: [
-      widgetsDir,
-      "../web/static",
+      widgetsDir
     ],
 
     // Where to compile files to
@@ -61,7 +51,7 @@ exports.config = {
 
   modules: {
     autoRequire: {
-      "js/app.js": ["widgets/deps"].concat(widgets).concat(["web/static/js/app"])
+      "js/app.js": ["widgets/deps"].concat(widgets)
     }
   },
 
@@ -69,10 +59,9 @@ exports.config = {
     enabled: true,
     // Whitelist the npm deps to be pulled in as front-end assets.
     // All other deps in package.json will be excluded from the bundle.
+    styles: { sherlock: ["priv/static/css/sherlock.css"] },
     aliases: {
       vue: 'vue/dist/vue.common.js',
-      phoenix: 'phoenix/priv/static/phoenix.js',
-      phoenix_html: 'phoenix_html/priv/static/phoenix_html.js'
     }
   }
 };

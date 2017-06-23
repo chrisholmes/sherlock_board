@@ -6,13 +6,13 @@ defmodule Mix.Tasks.Sherlock.New do
   @files [
     eex: [
       "mix.exs",
+      "package.json",
       "brunch-config.js",
       "lib/<%= name %>.ex",
       "test/dashboard_test.exs",
       "test/support/integration_case.ex",
     ],
     text: [ 
-      "package.json",
       "mix.lock",
       "yarn.lock",
       ".gitignore",

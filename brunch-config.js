@@ -1,22 +1,19 @@
 exports.config = {
+  sourceMaps: false,
+  production: true,
+
+  modules: {
+    wrapper: false,
+    definition: false
+  },
   // See http://brunch.io/#documentation for docs.
   files: {
     javascripts: {
-      joinTo: "js/app.js"
+      joinTo: "js/sherlock.js"
     },
     stylesheets: {
-      joinTo: "css/app.css"
-    },
-    templates: {
-      joinTo: "js/app.js"
+      joinTo: "css/sherlock.css"
     }
-  },
-
-  conventions: {
-    // This option sets where we should place non-css and non-js assets in.
-    // By default, we set this to "/web/static/assets". Files in this directory
-    // will be copied to `paths.public`, which is "priv/static" by default.
-    assets: /^(web\/static\/assets)/
   },
 
   // Phoenix paths configuration
@@ -37,25 +34,8 @@ exports.config = {
       // Do not use ES6 compiler in vendor code
       ignore: [/web\/static\/vendor/]
     },
-    vue: {
-      globalizeComponents: true,
-      extractCSS: true,
-      out: 'priv/static/css/components.css'
-    },
   },
-
-  modules: {
-    autoRequire: {
-      "js/app.js": ["web/static/js/app"]
-    }
-  },
-
   npm: {
-    enabled: true,
-    // Whitelist the npm deps to be pulled in as front-end assets.
-    // All other deps in package.json will be excluded from the bundle.
-    aliases: {
-      vue: 'vue/dist/vue.common.js'
-    }
+    enabled: false
   }
 };

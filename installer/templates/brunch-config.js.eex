@@ -2,8 +2,7 @@ var fs = require('fs');
 var widgetsDir = "widgets/";
 var widgets = fs.readdirSync(widgetsDir).filter(function(file) {
   return file.match(/.*vue$/)
-}).map(function(file) { return widgetsDir + file});
-
+}).map(function(file) { return widgetsDir + file}); 
 exports.config = {
   // See http://brunch.io/#documentation for docs.
   files: {
@@ -29,8 +28,7 @@ exports.config = {
   paths: {
     // Dependencies and current project directories to watch
     watched: [
-      widgetsDir,
-      "<%= sherlock_path %>/web/static",
+      widgetsDir
     ],
 
     // Where to compile files to
@@ -52,7 +50,7 @@ exports.config = {
 
   modules: {
     autoRequire: {
-      "js/app.js": ["widgets/deps"].concat(widgets).concat(["web/static/js/app"])
+      "js/app.js": ["widgets/deps"].concat(widgets)
     }
   },
 
@@ -60,10 +58,11 @@ exports.config = {
     enabled: true,
     // Whitelist the npm deps to be pulled in as front-end assets.
     // All other deps in package.json will be excluded from the bundle.
+    styles: {
+      sherlock: ["priv/static/css/sherlock.css"]
+    },
     aliases: {
-      vue: 'vue/dist/vue.common.js',
-      phoenix: 'phoenix/priv/static/phoenix.js',
-      phoenix_html: 'phoenix_html/priv/static/phoenix_html.js'
+      vue: 'vue/dist/vue.common.js'
     }
   }
 };

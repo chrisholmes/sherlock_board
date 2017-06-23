@@ -7,7 +7,7 @@ var options = {
   responsive: true,
   animation: false
 }
-import Widget from 'web/static/js/widget'
+import { Widget } from 'sherlock';
 export default Widget.register('chart', {
   methods: {
     renderChart(payload) {
