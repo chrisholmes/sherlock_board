@@ -29,9 +29,9 @@ defmodule SherlockBoard.JobLoaderTest do
     directory = Temp.mkdir!("jobs")
     names = [module_name(12), module_name(12)]
     loaded_module_names = create_job_modules(directory, names) 
-                    |> Enum.map(fn(name) -> "Elixir.#{name}" end)
-    jobs = SherlockBoard.JobLoader.load(directory)
-    assert Enum.map(jobs, fn(j) -> to_string j end) == loaded_module_names
+                    |> Enum.map(fn(name) -> "Elixir.#{name}" end) |> Enum.sort
+    jobs = SherlockBoard.JobLoader.load(directory) |> Enum.map(&to_string/1) |> Enum.sort
+    assert jobs == loaded_module_names
   end
 
   test "it will error if no directory" do
