@@ -8,8 +8,10 @@ before_script:
     - "mkdir geckodriver"
     - "tar -xzf geckodriver-v0.17.0-linux64.tar.gz -C geckodriver"
     - "export PATH=$PATH:$PWD/geckodriver"
-    - "jdk_switcher use oraclejdk8"
     - "bash test/travis/start_selenium.sh"
 script: "./pre-commit.sh"
 addons:
     firefox: "54.0"
+    apt:
+      packages:
+        - oracle-java8-set-default
