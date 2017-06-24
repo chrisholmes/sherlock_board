@@ -4,5 +4,11 @@ elixir:
 before_script: 
     - "export DISPLAY=:99.0"
     - "sh -e /etc/init.d/xvfb start"
+    - "wget https://github.com/mozilla/geckodriver/releases/download/v0.17.0/geckodriver-v0.17.0-linux64.tar.gz"
+    - "mkdir geckodriver"
+    - "tar -xzf geckodriver-v0.17.0-linux64.tar.gz -C geckodriver"
+    - "export PATH=$PATH:$PWD/geckodriver"
     - "bash test/travis/start_selenium.sh"
 script: "./pre-commit.sh"
+addons:
+    firefox: "54.0"
