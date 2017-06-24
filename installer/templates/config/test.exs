@@ -9,4 +9,4 @@ config :sherlock_board, SherlockBoard.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
-config :hound, driver: "chrome_driver"
+config :hound, driver: "selenium"

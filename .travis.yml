@@ -1,4 +1,9 @@
 language: elixir
 elixir:
-  - 1.4
-script: ./pre-commit.sh
+- 1.4
+script: "./pre-commit.sh"
+addons:
+  sauce_connect:
+    username: cholmes
+    access_key:
+      secure: "O9K+IX95XIH10eFaY1YuEaUU3udN/FEzj5PrvzR5kjkbIgAFc1kpSkcqOulm7W1gVZ522YWKOjUYBY/ba96d6Il0PEvtW1cLB5khNrsaDbG60Y2tcvHb3uzqIGiXlQYVJLMTM7GTTGMgmcWDmjX4rpsNTJoCVdSb9axjYNlAbVrGRBUOVTLZTqnr6O8ERwuaTLNxPiR7aGbdRzXf7NjL2RMvjTRuPbcT0YbbXYDZ1nYetWD3OckTfuulCNLcj+Q9IqF7HmzsfW+eucPGJJMN3mGuJVuBPp7JacdlA03aUtb9Q92Y4GXh3Qt8IwGLI8vUdx+U3VptUckh/8H+6ySJkLM/NhgxzE257xMp66HdYoWwUGiJyCAfoJYPuc+tWBXUYRStL0mmkUdGW+glG9aTNvJ32wn++6Yp8Gj5xKbL9bwQDIvtYdyS3m6/6eltfXsx+U+bBxW6RsLlQg7cL75Tp9JcY8umWCaV1Zkdu6OJ8YVukgl611569711nEOKoBIxL9/jVE0CE18ijeuhtUQDaoHAFyoyaEvu1VXFlt5sfTFU0owesk+fXUqUdgjlH3c1RoFU5YRCVK2aSec1QB7l0Aw1sJyFozl+HUOwW20N14rg/G36L9mcezDJ/BXJICNQR+Un4DlXBBBdrAHv4tPLmfeCk0fE2pfersIX6vxKIRk="
