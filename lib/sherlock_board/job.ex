@@ -6,7 +6,7 @@ defmodule SherlockBoard.Job do
       defmodule unquote(Module.concat(SherlockBoard.Job, name)) do
         alias SherlockBoard.Endpoint
         def send_event(name, data) do
-          Endpoint.broadcast("jobs", name, Map.merge(data, %{period: period}))
+          Endpoint.broadcast("jobs", name, Map.merge(data, %{period: period()}))
         end
 
         def send_html(name, html) do

@@ -36,7 +36,7 @@ defmodule <%= Macro.camelize(name) %>.Mixfile do
   defp deps do
     [
       {:phoenix_live_reload, "~> 1.0", only: :dev},
-      {:phoenix, "~> 1.1.4"},
+      {:phoenix, "~> 1.2"},
       <%= sherlock_dep %>,
       {:phoenix_html, "~> 2.4"}
     ]

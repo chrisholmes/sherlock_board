@@ -17,7 +17,7 @@ defmodule SherlockBoard.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static, 
     at: "/",
-    from: Path.join(Application.get_env(:sherlock, :directory), "priv/static"),
+    from: Path.join(Application.get_env(:sherlock_board, :directory), "priv/static"),
     gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 

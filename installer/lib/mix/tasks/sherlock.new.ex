@@ -22,7 +22,7 @@ defmodule Mix.Tasks.Sherlock.New do
       "config/prod.exs",
       "jobs/html_job.ex",
       "jobs/event_job.ex",
-      "dashboards/sample.html.eex",
+      "dashboards/sample.html",
       "test/test_helper.exs",
       "widgets/number.vue",
       "widgets/htmlbox.vue",

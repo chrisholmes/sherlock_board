@@ -19,7 +19,7 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-config :sherlock, directory: (System.get_env("SHERLOCK_DIR") || Path.dirname(__DIR__))
+config :sherlock_board, directory: (System.get_env("SHERLOCK_DIR") || Path.dirname(__DIR__))
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

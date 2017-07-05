@@ -35,11 +35,6 @@ defmodule SherlockBoard.Web do
     view(%{root: "web/templates"})
   end
 
-  def dashboard_view do
-    sherlock_directory = Application.get_env(:sherlock, :directory)
-    view(%{root: sherlock_directory})
-  end
-
   defp view(%{root: root}) do
     quote do
       use Phoenix.View, root: unquote(root)
