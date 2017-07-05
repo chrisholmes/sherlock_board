@@ -55,6 +55,7 @@ defmodule Mix.Tasks.Sherlock.New do
        Mix.shell.cmd("yarn install && node_modules/brunch/bin/brunch build")
       end)
     end
+    Mix.shell.info("#{name} has been created.")
   end
 
   defp eval_with_options(string, [name | options]) do
