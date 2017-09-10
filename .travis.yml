@@ -22,7 +22,7 @@ install:
   - "yarn"
   - "(cd example_dashboard && mix deps.get)"
   - "(cd example_dashboard && yarn)"
-  - "(cd example_dashboard && brunch b)"
+  - "(cd example_dashboard && yarn run dev)"
   - "(cd installer && mix deps.get)"
 script: "./pre-commit.sh"
 cache:

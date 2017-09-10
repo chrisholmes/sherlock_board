@@ -1,4 +1,8 @@
+# OS artifacts
+.DS_Store
+
 # App artifacts
+/_build
 /_build
 /db
 /deps
@@ -22,3 +26,13 @@ erl_crash.dump
 # secrets file as long as you replace its contents by environment
 # variables.
 /config/prod.secret.exs
+
+npm-debug.log
+yarn-error.log
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
