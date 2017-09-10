@@ -2,7 +2,6 @@ defmodule SherlockBoard.Router do
   use SherlockBoard.Web, :router
 
   pipeline :browser do
-    plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
     plug :protect_from_forgery
@@ -15,6 +14,7 @@ defmodule SherlockBoard.Router do
 
   scope "/", SherlockBoard do
     pipe_through :browser # Use the default browser stack
+    get "/events", EventsController, :events
     get "/:dashboard", DashboardsController, :index
   end
 

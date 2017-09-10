@@ -29,12 +29,15 @@ defmodule SherlockBoard.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.2"},
-     {:phoenix_html, "~> 2.4"},
-     {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:temp, "~> 0.4", only: :test},
-     {:gettext, "~> 0.9"},
-     {:cowboy, "~> 1.0"}]
+    [
+      {:phoenix, "~> 1.2"},
+      {:phoenix_html, "~> 2.4"},
+      {:phoenix_live_reload, "~> 1.0", only: :dev},
+      {:temp, "~> 0.4", only: :test},
+      {:gettext, "~> 0.9"},
+      {:cowboy, "~> 1.0"},
+      {:gen_stage, "~> 0.12"}
+    ]
   end
 
   defp package do

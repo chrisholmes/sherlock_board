@@ -53,16 +53,64 @@ var SherlockInit = function SherlockInit() {
   });
 };
 
-var socket = new _phoenix.Socket("/socket", { params: { token: window.userToken } });
+var JobEvents = function () {
+  function JobEvents() {
+    _classCallCheck(this, JobEvents);
 
-socket.connect();
+    this.eventListeners = [];
+    this.keepaliveTimer = null;
+    this.connect();
+  }
 
-var channel = socket.channel("jobs", {});
-channel.join().receive("ok", function (resp) {
-  console.log("Joined successfully", resp);
-}).receive("error", function (resp) {
-  console.log("Unable to join", resp);
-});
+  _createClass(JobEvents, [{
+    key: 'gotActivity',
+    value: function gotActivity() {
+      var _this = this;
+
+      if (this.keepaliveTimer != null) clearTimeout(this.keepaliveTimer);
+      this.keepaliveTimer = setTimeout(function () {
+        _this.connect();
+      }, 30 * 1000);
+    }
+  }, {
+    key: 'wrapWithTimer',
+    value: function wrapWithTimer(listener) {
+      var _this2 = this;
+
+      return function (e) {
+        _this2.gotActivity();
+        listener(e);
+      };
+    }
+  }, {
+    key: 'connect',
+    value: function connect() {
+      var _this3 = this;
+
+      this.gotActivity();
+      var es = new EventSource("/events");
+      es.addEventListener('message', function (e) {
+        _this3.gotActivity();
+      });
+      this.eventListeners.forEach(function (eventListener) {
+        var wrappedListener = _this3.wrapWithTimer(eventListener.listener);
+        es.addEventListener(eventListener.job, wrappedListener);
+      });
+      this.eventSource = es;
+    }
+  }, {
+    key: 'addEventListener',
+    value: function addEventListener(job, listener) {
+      this.eventListeners.push({ job: job, listener: listener });
+      var wrappedListener = this.wrapWithTimer(listener);
+      this.eventSource.addEventListener(job, wrappedListener);
+    }
+  }]);
+
+  return JobEvents;
+}();
+
+var jobEvents = new JobEvents();
 
 var WidgetManager = function () {
   function WidgetManager() {
@@ -71,10 +119,10 @@ var WidgetManager = function () {
     this.base = {
       props: ["job"],
       mounted: function mounted() {
-        var _this = this;
+        var _this4 = this;
 
-        channel.on(this.job, function (payload) {
-          _this.payload = payload;
+        jobEvents.addEventListener(this.job, function (e) {
+          _this4.payload = JSON.parse(e.data);
         });
       },
       data: function data() {

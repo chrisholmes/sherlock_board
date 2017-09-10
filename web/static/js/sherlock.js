@@ -37,23 +37,55 @@ var SherlockInit =  function() {
   })
 }
 
-let socket = new Socket("/socket", {params: {token: window.userToken}})
+class JobEvents {
+  constructor() {
+    this.eventListeners = []
+    this.keepaliveTimer = null;
+    this.connect();
+  }
 
-socket.connect()
+  gotActivity(){
+    if(this.keepaliveTimer != null)clearTimeout(this.keepaliveTimer);
+    this.keepaliveTimer = setTimeout(() => {this.connect();}, 30 * 1000);
+  }
 
-let channel = socket.channel("jobs", {});
-channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
-  .receive("error", resp => { console.log("Unable to join", resp) })
+  wrapWithTimer(listener) {
+    return (e) => {
+      this.gotActivity();
+      listener(e);
+    }
+  }
+
+  connect(){
+    this.gotActivity();
+    let es = new EventSource("/events");
+    es.addEventListener('message', (e) =>{
+      this.gotActivity();
+    })
+    this.eventListeners.forEach((eventListener) => {
+      let wrappedListener = this.wrapWithTimer(eventListener.listener);
+      es.addEventListener(eventListener.job, wrappedListener);
+    });
+    this.eventSource = es;
+  }
+
+  addEventListener(job, listener) {
+    this.eventListeners.push({job: job, listener: listener});
+    let wrappedListener = this.wrapWithTimer(listener);
+    this.eventSource.addEventListener(job, wrappedListener);
+  }
+}
+
+let jobEvents = new JobEvents();
 
 class WidgetManager  {
   constructor() {
     this.base = {
       props: ["job"],
       mounted: function() {
-        channel.on(this.job, payload => {
-          this.payload = payload;
-        })
+        jobEvents.addEventListener(this.job, (e) => {
+          this.payload = JSON.parse(e.data);
+        });
       },
       data() {
         return {

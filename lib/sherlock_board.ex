@@ -13,7 +13,11 @@ defmodule SherlockBoard do
 
     job_supervisor = supervisor(SherlockBoard.JobSupervisor, [])
    
-    children = [endpoint_supervisor, job_supervisor]
+    children = [
+      endpoint_supervisor,
+      job_supervisor,
+      supervisor(SherlockBoard.JobEvents, [])
+   ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
