@@ -9,7 +9,6 @@ defmodule SherlockBoard.Job do
         def send_event(name, data) do
           data_with_time = Map.merge(data, %{period: period()})
           JobEvents.broadcast({name, data_with_time})
-          Endpoint.broadcast("jobs", name, data_with_time)
         end
 
         def send_html(name, html) do
