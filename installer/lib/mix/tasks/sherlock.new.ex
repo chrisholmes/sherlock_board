@@ -7,7 +7,6 @@ defmodule Mix.Tasks.Sherlock.New do
     eex: [
       "mix.exs",
       "package.json",
-      "brunch-config.js",
       "lib/<%= name %>.ex",
       "test/dashboard_test.exs",
       "test/support/integration_case.ex",
@@ -24,9 +23,10 @@ defmodule Mix.Tasks.Sherlock.New do
       "jobs/event_job.ex",
       "dashboards/sample.html",
       "test/test_helper.exs",
-      "widgets/number.vue",
       "widgets/htmlbox.vue",
-      "widgets/deps.js"
+      "widgets/main.js",
+      "widgets/number.vue",
+      "webpack.config.js"
     ]
   ]
 
@@ -52,7 +52,7 @@ defmodule Mix.Tasks.Sherlock.New do
     if Mix.shell.yes?(~s[Fetch and install dependencies?]) do
       File.cd!(name, fn-> 
        Mix.shell.cmd("mix deps.get")
-       Mix.shell.cmd("yarn install && node_modules/brunch/bin/brunch build")
+       Mix.shell.cmd("yarn install && yarn run dev")
       end)
     end
     Mix.shell.info("#{name} has been created.")

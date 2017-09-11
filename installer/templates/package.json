@@ -1,13 +1,15 @@
 {
+  "name": "example_dashboard",
   "repository": {},
+  "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --progress --color",
     "deploy": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "watch": "cross-env NODE_ENV=development webpack --progress --watch-stdin --color"
   },
   "dependencies": {
-    "sherlock": "file:<%= sherlock_path %>",
-    "phoenix": "file:deps/phoenix",
+    "sherlock": "file:../",
+    "chart.js": "^2.5.0",
     "vue": "^2.4.2"
   },
   "devDependencies": {
