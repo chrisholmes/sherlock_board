@@ -10,9 +10,8 @@ config :sherlock_board, SherlockBoard.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
-  secret_key_base: "KFRBqRS//NJPVTRs6Oz+zM4R0KUuWCIEBkNQ7iNqyJoUCKPoBMTBojfvhR/6Q7RQ",
   check_origin: false,
-  watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin"]]
+  watchers: [npm: ["run", "watch"]]
 
 # Watch static and templates for browser reloading.
 config :sherlock_board, SherlockBoard.Endpoint,
