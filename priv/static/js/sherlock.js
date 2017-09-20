@@ -109,4 +109,3 @@ var Widget = new WidgetManager();
 exports.Grid = Grid;
 exports.SherlockInit = SherlockInit;
 exports.Widget = Widget;
-
