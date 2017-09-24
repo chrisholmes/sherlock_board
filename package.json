@@ -2,11 +2,11 @@
   "name": "sherlock",
   "version": "0.0.1",
   "repository": {},
-  "main": "priv/static/js/sherlock.js",
+  "main": "dist/js/sherlock.js",
   "license": "MIT",
   "scripts": {
-    "compile": "babel web/static/js/sherlock.js --out-file priv/static/js/sherlock.js" ,
-    "watch": "babel web/static/js --out-file priv/static/js/sherlock.js --watch"
+    "compile": "babel web/static/js --out-file dist/js/sherlock.js" ,
+    "watch": "babel web/static/js --out-file dist/js/sherlock.js --watch"
   },
   "dependencies": {
     "phoenix": "file:deps/phoenix",
@@ -18,7 +18,8 @@
   },
   "files": [
     "package.json",
-    "priv/static/js/sherlock.js",
-    "priv/static/css/sherlock.css"
+    "dist/js/sherlock.js",
+    "dist/js/sherlockInit.js",
+    "dist/css/sherlock.css"
   ]
 }

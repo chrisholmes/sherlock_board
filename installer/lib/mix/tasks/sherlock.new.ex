@@ -24,7 +24,6 @@ defmodule Mix.Tasks.Sherlock.New do
       "dashboards/sample.html",
       "test/test_helper.exs",
       "widgets/htmlbox.vue",
-      "widgets/main.js",
       "widgets/number.vue",
       "webpack.config.js"
     ]

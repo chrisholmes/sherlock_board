@@ -8,7 +8,7 @@ var widgets = fs.readdirSync(widgetsDir).filter(function(file) {
 }).map(function(file) { return path.join(widgetsDir, file)});
 
 module.exports = {
-  entry: widgets.concat("./widgets/main.js"),
+  entry: widgets.concat( "sherlock/dist/js/sherlock.init.webpack.js"),
   output: {
     path: path.resolve(__dirname, './priv/static/js'),
     publicPath: '/js/',
