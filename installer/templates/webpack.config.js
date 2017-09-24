@@ -1,14 +1,16 @@
 var path = require('path')
 var webpack = require('webpack')
 
-var fs = require('fs');
-var widgetsDir = path.resolve(__dirname, './widgets/')
-var widgets = fs.readdirSync(widgetsDir).filter(function(file) {
-  return file.match(/.*vue$/)
-}).map(function(file) { return path.join(widgetsDir, file)});
+var widgets = function() {
+  var fs = require('fs');
+  var widgetsDir = path.resolve(__dirname, './widgets/');
+  var joinWithWidgetsDir = function(file) { return path.join(widgetsDir, file)};
+  var isVueFile = function(file) { return file.match(/.*vue$/) };
+  return fs.readdirSync(widgetsDir).filter(isVueFile).map(joinWithWidgetsDir);
+}
 
 module.exports = {
-  entry: widgets.concat( "sherlock/dist/js/sherlock.init.webpack.js"),
+  entry: widgets().concat( "sherlock/dist/js/sherlock.init.webpack.js"),
   output: {
     path: path.resolve(__dirname, './priv/static/js'),
     publicPath: '/js/',
