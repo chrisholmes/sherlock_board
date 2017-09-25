@@ -8,8 +8,6 @@ defmodule Mix.Tasks.Sherlock.New do
       "mix.exs",
       "package.json",
       "lib/<%= name %>.ex",
-      "test/dashboard_test.exs",
-      "test/support/integration_case.ex",
     ],
     text: [ 
       "mix.lock",
@@ -22,7 +20,6 @@ defmodule Mix.Tasks.Sherlock.New do
       "jobs/html_job.ex",
       "jobs/event_job.ex",
       "dashboards/sample.html",
-      "test/test_helper.exs",
       "widgets/htmlbox.vue",
       "widgets/number.vue",
       "webpack.config.js"
